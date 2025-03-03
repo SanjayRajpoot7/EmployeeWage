@@ -154,3 +154,41 @@ function totalWages(totalWage, dailyWage){
 }
 
 console.log("UC 8 - Emp wage map totalHrs: "+ Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+
+
+
+
+
+let empDailyHrsMap = new Map(); // Create 
+empDailyHrsMap.set(1, 8);  
+empDailyHrsMap.set(2, 4);
+empDailyHrsMap.set(3, 0); 
+empDailyHrsMap.set(4, 8);
+empDailyHrsMap.set(5, 4); 
+
+// Define your daily wage array
+const findTotal = (totalVal, dailyVal) => {
+    return totalVal + dailyVal;
+}
+
+let count = 0;
+let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal, 0);
+let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0).reduce(findTotal, 0);
+console.log("UC 9A - Emp Wage with arrow: "+findTotal()+ " Total Hours: "+totalHours+" Total Wages: "+totalSalary);
+
+
+let nonWorkingDays = new Array();
+let partWokringDays = new Array();
+let fullWokringDays = new Array();
+
+empDailyHrsMap.forEach( (value, key, map) => {
+   if(value == 8) fullWokringDays.push(key);
+   else if(value == 4) partWokringDays.push(key);
+   else nonWorkingDays.push(key);
+})
+
+console.log("Full Working Days: "+fullWokringDays);
+
+console.log("Part Working Days: "+partWokringDays);
+
+console.log("Non Working Days: "+nonWorkingDays);
