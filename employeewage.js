@@ -13,27 +13,25 @@ if (randomValue >= 0 && randomValue <= 0.5) {
 console.log(check)
 
 
+const IS_PART_TIME = 1;
+const IS_FULL_TIME = 2;
+const PART_TIME_HOURS = 4;
+const FULL_TIME_HOURS = 8;
+const WAGE_PER_HOUR = 20;
 
-const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question('Please enter working time: ', (time) => {
-
-switch(time){
-    case '8':
-        console.log("Employee type full time and wage in dollor: "+(8*20))
-        break;
-    case '4':
-        console.log("Employee type part time and wage in dollor: "+(4*20));
-        break;
-    default:
-        console.log('Invalid employee type');
-        break;
+function getWorkingHours(empcheck){
+    switch(empcheck){
+        case IS_PART_TIME:
+            return PART_TIME_HOURS;
+        case IS_FULL_TIME:
+            return FULL_TIME_HOURS;
+        default:
+            return 0;    
+    }
 }
-});
 
-
+let empHrs = 0;
+let empcheck = Math.floor(Math.random() * 10 ) % 3;
+empHrs = getWorkingHours(empcheck);
+let empWage = empHrs * WAGE_PER_HOUR;
+console.log("Emp wage: "+empWage)
