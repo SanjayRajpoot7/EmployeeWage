@@ -30,8 +30,20 @@ function getWorkingHours(empcheck){
     }
 }
 
+// let empHrs = 0;
+// let empcheck = Math.floor(Math.random() * 10 ) % 3;
+// empHrs = getWorkingHours(empcheck);
+// let empWage = empHrs * WAGE_PER_HOUR;
+// console.log("Emp wage: "+empWage)
+
+
 let empHrs = 0;
-let empcheck = Math.floor(Math.random() * 10 ) % 3;
-empHrs = getWorkingHours(empcheck);
+const NUM_OF_WORKING_DAYS = 2;
+for(let day = 0; day < NUM_OF_WORKING_DAYS; day++){
+    let empcheck = Math.floor(Math.random() * 10 ) % 3;
+    empHrs += getWorkingHours(empcheck);
+    
+}
+
 let empWage = empHrs * WAGE_PER_HOUR;
-console.log("Emp wage: "+empWage)
+console.log("Total Hrs: "+empHrs+" Emp Wage: "+empWage)
