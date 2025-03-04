@@ -239,12 +239,16 @@ class EmployeeWageData{
     id;
     name;
     salary;
+    gender;
+    startDate;
     
 
-    constructor(id, name, salary) {
-        this.id = id;
-        this.name = name; 
-        this.salary = salary; 
+    constructor(...params) {
+        this.id = params[0]
+        this.name = params[1]
+        this.salary = params[2]
+        this.gender = params[3]
+        this.startDate = params[4]
     }
 
     get name(){
@@ -269,10 +273,31 @@ class EmployeeWageData{
     set id(id){
         this.id = id;
     }
+    
+    get gender(){
+        return this.gender;
+    }
+
+    set gender(gender){
+        this.gender = gender;
+    }
+
+    get startDate(){
+        return this.startDate;
+    }
+
+    set startDate(startDate){
+        return this.startDate = startDate
+    }
+
 
 
     toString(){
-        return "id = " + this.id + ", name = " + this.name + ", salary = " + this.salary;
+        const options = { year : 'numeric', month : 'long', day : 'numeric' };
+
+        const empDate = this.startDate === undefined ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
+
+        return "id = " + this.id + ", name = " + this.name + ", salary = " + this.salary+ ", gender = " + this.gender + ", startDate = " + empDate;
     }
 
 }
@@ -281,3 +306,6 @@ let employeeWageData = new EmployeeWageData(1,"Raj",45000)
 console.log(employeeWageData.toString());
 employeeWageData.name = "Sanjay";
 console.log(employeeWageData.toString());
+
+let newEmployeeWageData = new EmployeeWageData(3,"Jay",65000,"M",new Date());
+console.log(newEmployeeWageData.toString());
